@@ -4,12 +4,7 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -27,14 +22,13 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTasks", consumes = APPLICATION_JSON_VALUE)
-    public TaskDto getTask(@RequestBody String taskId) {
-        return new TaskDto((long) 1, "test title", "test_content");
+    @RequestMapping(method = RequestMethod.GET, value = "getTask/{taskId}", consumes = APPLICATION_JSON_VALUE)
+    public TaskDto getTask(@PathVariable("taskId") Long taskId) {
+        return taskMapper.mapToTaskDto(service.findById(taskId).get());
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTasks", consumes = APPLICATION_JSON_VALUE)
     public void deleteTask(@RequestBody String taskId) {
-
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTasks", consumes = APPLICATION_JSON_VALUE)
@@ -47,5 +41,4 @@ public class TaskController {
     public void createTask(@RequestBody TaskDto taskDto) {
         service.saveTask(taskMapper.mapToTask(taskDto));
     }
-
 }
