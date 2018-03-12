@@ -30,5 +30,6 @@ dependencies {
     compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('mysql:mysql-connector-java')
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
 }
