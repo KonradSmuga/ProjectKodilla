@@ -33,14 +33,14 @@ public class TaskController {
           service.deleteById(taskId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateTasks", consumes = APPLICATION_JSON_VALUE)
-    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
+    @RequestMapping(method = RequestMethod.PUT, value = "updateTask", consumes = APPLICATION_JSON_VALUE)
+    public TaskDto updateTask(@RequestParam TaskDto taskDto) {
 
         return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createTasks", consumes = APPLICATION_JSON_VALUE)
-    public void createTask(@RequestBody TaskDto taskDto) {
+    @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = APPLICATION_JSON_VALUE)
+    public void createTask(@RequestParam TaskDto taskDto) {
         service.saveTask(taskMapper.mapToTask(taskDto));
     }
 }
