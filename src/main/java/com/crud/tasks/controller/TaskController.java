@@ -18,12 +18,12 @@ public class TaskController {
     @Autowired
     private TaskMapper taskMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTaskList", produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "getTask", produces = APPLICATION_JSON_VALUE)
     public List<TaskDto> getTask() {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTask", produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "getTaskId", produces = APPLICATION_JSON_VALUE)
     public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(service.findById(taskId).orElseThrow(TaskNotFoundException::new));
     }
