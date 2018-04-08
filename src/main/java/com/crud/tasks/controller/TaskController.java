@@ -18,7 +18,7 @@ public class TaskController {
     @Autowired
     private TaskMapper taskMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "cd", produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "getTask", produces = APPLICATION_JSON_VALUE)
     public List<TaskDto> getTask() {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
