@@ -100,7 +100,7 @@ public class TrelloClientTest {
 
         //when
 
-        when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
+//        when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
         List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
 
         //Then
