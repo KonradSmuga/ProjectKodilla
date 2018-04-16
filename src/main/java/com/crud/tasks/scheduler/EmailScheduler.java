@@ -10,6 +10,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 public class EmailScheduler {
     private static final String SUBJECT = "TAsks: Once a day email";
+    private static final String TASKS = "tasks";
+    private static final String TASK = "task" ;
+
 
     @Autowired
     private SimpleEmailService simpleEmailService;
@@ -23,9 +26,9 @@ public class EmailScheduler {
     @Scheduled(fixedDelay = 10000)
     public void sendInformationEmail() {
         long size = taskRepository.count();
-        if (size != 1) {
-            simpleEmailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT, "Currently in database you got : " + size + " tasks", ""));
-        }
-            simpleEmailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT, "Currently in database you got : " + size + " task", ""));
+        String task = size>1 ? TASKS : TASK ;
+
+            simpleEmailService.send(new Mail(adminConfig.getAdminMail(), SUBJECT, "Currently in database you got : " + size +""+ task, ""));
+
     }
 }
