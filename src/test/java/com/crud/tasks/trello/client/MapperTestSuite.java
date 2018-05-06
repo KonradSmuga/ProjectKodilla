@@ -39,6 +39,7 @@ public class MapperTestSuite {
         Assert.assertEquals("test", mapToTask.getContent());
     }
 
+
     @Test
     public void testMapToBoard() {
         //Given
@@ -53,7 +54,7 @@ public class MapperTestSuite {
         //then
         Assert.assertEquals(1, trelloBoardList.get(0).getLists().size());
         Assert.assertEquals(1, trelloBoardList.size());
-        Assert.assertEquals("testTrelloDto", trelloBoardList.get(0).getLists().get(0).getName());
+        Assert.assertEquals("trelloBoard", trelloBoardList.get(0).getName());
     }
 
     @Test
@@ -96,7 +97,6 @@ public class MapperTestSuite {
         List<TrelloListDto> trelloListsDto = trelloMapper.mapToListDto(trelloLists);
 
         //then
-        Assert.assertEquals(1, trelloListsDto.size());
         Assert.assertEquals("testTrelloList", trelloListsDto.get(0).getName());
     }
 
