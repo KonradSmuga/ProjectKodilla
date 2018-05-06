@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class MapperTestSuite {
 
     @InjectMocks
@@ -84,7 +83,7 @@ public class MapperTestSuite {
 
         //then
         Assert.assertEquals("1", trelloLists.get(0).getId());
-        Assert.assertEquals("testTrelloDto", trelloLists.get(1).getName());
+        Assert.assertEquals("testTrelloDto", trelloLists.get(0).getName());
     }
 
     @Test
