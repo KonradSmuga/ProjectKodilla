@@ -69,18 +69,5 @@ public class DbServiceTest {
         assertEquals(task1.getContent(), testTask.getContent());
     }
 
-    @Test
-    public void testDeleteTasks() {
-        //Given
-        Task task1 = new Task(1l, "title", "desc");
-        Task task2 = new Task(2l, "title", "desc");
-        List<Task> tasks = new ArrayList<>();
-        tasks.add(task1);
-        tasks.add(task2);
 
-        //When
-        dbService.deleteById(1L);
-        //Then
-        assertEquals(1, tasks.size());
-    }
 }
