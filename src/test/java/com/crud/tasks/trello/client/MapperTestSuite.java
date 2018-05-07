@@ -38,7 +38,6 @@ public class MapperTestSuite {
         Assert.assertEquals("test", mapToTask.getContent());
     }
 
-
     @Test
     public void testMapToBoard() {
         //Given
