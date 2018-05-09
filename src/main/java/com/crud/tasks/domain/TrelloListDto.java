@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 
 @AllArgsConstructor
-@Getter
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class TrelloListDto {
@@ -21,4 +21,16 @@ public class TrelloListDto {
 
     @JsonProperty("closed")
     private boolean isClosed;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
 }

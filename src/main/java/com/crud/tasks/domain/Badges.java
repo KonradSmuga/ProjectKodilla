@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class Badges {
@@ -17,4 +16,12 @@ public class Badges {
 
     @JsonProperty("Attachment")
     private AttachmentByType attachmentByType;
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public AttachmentByType getAttachmentByType() {
+        return attachmentByType;
+    }
 }

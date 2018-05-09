@@ -11,7 +11,6 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Entity(name = "tasks")
 public class Task {
 
@@ -33,5 +32,17 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
     }
 }
