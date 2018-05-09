@@ -5,10 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@Getter
+
 @NoArgsConstructor
 public class TaskDto {
     private Long id;
     private String title;
     private String content;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }
