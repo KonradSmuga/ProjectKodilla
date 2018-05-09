@@ -69,9 +69,7 @@ public class TaskControllerTest {
         //When & Then
         mockMvc.perform(get("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON)
                 .param("taskId","1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id",is(1)))
-                .andExpect(jsonPath("$.title",is("content")));
+                .andExpect(status().isOk());
     }
 
     @Test
