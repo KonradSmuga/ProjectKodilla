@@ -23,8 +23,8 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTaskId/{taskId}", produces = APPLICATION_JSON_VALUE)
-    public TaskDto getTaskId(@RequestParam Long taskId) throws TaskNotFoundException {
+    @RequestMapping(method = RequestMethod.GET, value = "getTaskId", produces = APPLICATION_JSON_VALUE)
+    public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(service.findById(taskId).orElseThrow(TaskNotFoundException::new));
     }
 

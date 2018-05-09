@@ -25,17 +25,16 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(TaskController.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(TaskController.class)
 public class TaskControllerTest {
-/*
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -59,22 +58,24 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 
+
     @Test
-    public void shouldFetchGetTask() throws Exception{
+    public void shouldFetchGetTaskId() throws Exception {
         //Given
-        TaskDto taskDto = new TaskDto(1L, "title!", "content");
+        TaskDto taskDto = new TaskDto(1L, "title", "content");
         when(taskMapper.mapToTaskDto(any(Task.class))).thenReturn(taskDto);
         when(dbService.findById(1L)).thenReturn(Optional.of(new Task()));
 
         //When & Then
-        mockMvc.perform(get("v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-              //  .andExpect(jsonPath("$.id",is(1)))
-              //  .andExpect(jsonPath("$.title",is("title")));
+        mockMvc.perform(get("/v1/task/getTaskId/1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+        .andExpect(jsonPath("$.id",is(1L)))
+        .andExpect(jsonPath("$.title",is("title")));
     }
 
+
     @Test
-    public void shouldFetchTaskById() throws Exception{
+    public void shouldFetchTask() throws Exception {
 
     }
 
@@ -84,14 +85,15 @@ public class TaskControllerTest {
         TaskDto taskDto = new TaskDto(1l, "title", "content");
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
-        System.out.println(jsonContent);
+
         //When & Then
         mockMvc.perform(post("/v1/task/createTask").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().is(200));
     }
-
+}
+/*
     @Test
     public void shouldUpdateTask() throws Exception {
         // Given
@@ -123,4 +125,4 @@ public class TaskControllerTest {
                 .andExpect(status().isOk());
     }
 */
-}
+
