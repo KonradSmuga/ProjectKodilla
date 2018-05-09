@@ -59,7 +59,6 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 
-
     @Test
     public void shouldFetchGetTaskId() throws Exception {
         //Given
@@ -74,7 +73,6 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$.title", is("title")));
     }
 
-
     @Test
     public void shouldCreateTask() throws Exception {
         //Given
@@ -84,16 +82,18 @@ public class TaskControllerTest {
 
         //When & Then
         mockMvc.perform(post("/v1/task/createTask")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().is(200));
     }
 
 
     @Test
-    public void shouldUpdateTask() throws Exception {
+    public void shouldUpdateTask()throws Exception{
         // Given
-        TaskDto taskDto = new TaskDto(1l, "title", "content");
-        TaskDto updatedTask = new TaskDto(1l, "title2", "content2");
+        TaskDto taskDto = new TaskDto(1l, "title", "content1");
+        TaskDto updatedTask = new TaskDto(1l, "title1", "content1");
 
         when(taskMapper.mapToTaskDto(dbService.saveTask(taskMapper.mapToTask(taskDto)))).thenReturn(updatedTask);
 
@@ -101,20 +101,18 @@ public class TaskControllerTest {
         String cont = gson.toJson(taskDto);
 
         // When &  Then
-        mockMvc.perform(put("/v1/updateTask")
+        mockMvc.perform(put("/v1/task/updateTask")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(cont))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title", is("title2")))
-                .andExpect(jsonPath("$.content", is("content2")));
+                .andExpect(jsonPath("$.title", is("title1")))
+                .andExpect(jsonPath("$.content", is("content1")));
     }
-
     @Test
     public void shouldDeleteTask() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(1l, "title", "content");
-
 
         //When & Then
         mockMvc.perform(delete("/v1/task/deleteTask/1").contentType(MediaType.APPLICATION_JSON))
