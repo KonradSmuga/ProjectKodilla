@@ -70,15 +70,10 @@ public class TaskControllerTest {
         //When & Then
         mockMvc.perform(get("/v1/task/getTaskId/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1L)))
+                .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("title")));
     }
 
-
-    @Test
-    public void shouldFetchTask() throws Exception {
-
-    }
 
     @Test
     public void shouldCreateTask() throws Exception {
@@ -88,8 +83,7 @@ public class TaskControllerTest {
         String jsonContent = gson.toJson(taskDto);
 
         //When & Then
-        mockMvc.perform(post("/v1/task/createTask").contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
+        mockMvc.perform(post("/v1/task/createTask")
                 .content(jsonContent))
                 .andExpect(status().is(200));
     }
