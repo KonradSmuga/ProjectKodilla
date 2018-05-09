@@ -25,6 +25,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -69,8 +70,8 @@ public class TaskControllerTest {
         //When & Then
         mockMvc.perform(get("/v1/task/getTaskId/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-        .andExpect(jsonPath("$.id",is(1L)))
-        .andExpect(jsonPath("$.title",is("title")));
+                .andExpect(jsonPath("$.id", is(1L)))
+                .andExpect(jsonPath("$.title", is("title")));
     }
 
 
@@ -92,8 +93,8 @@ public class TaskControllerTest {
                 .content(jsonContent))
                 .andExpect(status().is(200));
     }
-}
-/*
+
+
     @Test
     public void shouldUpdateTask() throws Exception {
         // Given
@@ -120,9 +121,11 @@ public class TaskControllerTest {
         //Given
         TaskDto taskDto = new TaskDto(1l, "title", "content");
 
+
         //When & Then
-        mockMvc.perform(delete("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/v1/task/deleteTask/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-*/
+}
+
 
