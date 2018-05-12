@@ -60,6 +60,27 @@ public class TaskControllerTest {
     }
 
     @Test
+    public void shouldGetTasks() throws Exception {
+        //Given
+        List<TaskDto> taskList = new ArrayList<>();
+        TaskDto taskDto = new TaskDto(1L, "Task", "Content");
+        TaskDto taskDto1 = new TaskDto(2L, "Task", "Content");
+        taskList.add(taskDto);
+        taskList.add(taskDto1);
+
+        when(taskMapper.mapToTaskDtoList(anyList())).thenReturn(taskList);
+
+        //When & Then
+        mockMvc.perform(get("/v1/task/getTask").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].title", is("Task")))
+                .andExpect(jsonPath("$[0].content", is("Content")));
+    }
+
+
+    @Test
     public void shouldFetchGetTaskId() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(1L, "title", "content");
@@ -90,7 +111,7 @@ public class TaskControllerTest {
 
 
     @Test
-    public void shouldUpdateTask()throws Exception{
+    public void shouldUpdateTask() throws Exception {
         // Given
         TaskDto taskDto = new TaskDto(1l, "title", "content1");
         TaskDto updatedTask = new TaskDto(1l, "title1", "content1");
@@ -109,6 +130,7 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$.title", is("title1")))
                 .andExpect(jsonPath("$.content", is("content1")));
     }
+
     @Test
     public void shouldDeleteTask() throws Exception {
         //Given
