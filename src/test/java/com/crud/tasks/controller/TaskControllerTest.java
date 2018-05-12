@@ -132,13 +132,17 @@ public class TaskControllerTest {
     }
 
     @Test
-    public void shouldDeleteTask() throws Exception {
+    public void shouldDeleteTask() throws TaskNotFoundException {
         //Given
         TaskDto taskDto = new TaskDto(1l, "title", "content");
 
         //When & Then
-        mockMvc.perform(delete("/v1/task/deleteTask/1").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+        try {
+            mockMvc.perform(delete("/v1/task/deleteTask/1").contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
