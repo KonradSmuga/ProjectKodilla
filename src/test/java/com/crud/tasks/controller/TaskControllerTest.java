@@ -60,7 +60,7 @@ public class TaskControllerTest {
     }
 
     @Test
-    public void shouldGetTasks() throws Exception {
+    public void shouldFetchGetTasks() throws Exception {
         //Given
         List<TaskDto> taskList = new ArrayList<>();
         TaskDto taskDto = new TaskDto(1L, "Task", "Content");
