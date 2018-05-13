@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -69,5 +70,16 @@ public class DbServiceTest {
         assertEquals(task1.getContent(), testTask.getContent());
     }
 
-
+    @Test
+    public void deleteByIdTest() {
+        //Given
+        Task task1 = new Task(1l, "test", "test1");
+        when(dbService.saveTask(task1)).thenReturn(task1);
+        //When
+        Task testTask = dbService.saveTask(task1);
+        Long  id = testTask.getId();
+        //Then
+        dbService.deleteById(id);
+        assertEquals(Optional.empty(), dbService.findById(1L));
+    }
 }
